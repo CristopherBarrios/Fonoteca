@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-      <link rel="stylesheet" href="css/style1.css"> 
-      <link rel="stylesheet" href="efectos.css">
-      <link rel="stylesheet" href="letras1.css">
+      <link rel="stylesheet" href="RadioUAdmin/css/style1.css"> 
+      <link rel="stylesheet" href="RadioUAdmin/efectos.css">
+      <link rel="stylesheet" href="RadioUAdmin/letras1.css">
 </head>
 <body>
 
   <div id="wrap">
   <div id="regbar">
     <div id="navthing">
-      <h2><a href="#" id="loginform">Administrador</a> | <a href="pedir.php">Contactanos</a></h2>
+      <h2><a href="#" id="loginform">Administrador</a> | <a href="RadioUAdmin/pedir.php">Contactanos</a></h2>
     <div class="login">
       <div class="arrow-up"></div>
       <div class="formholder">
         <div class="randompad">
 
-           <form action="validar.php" method="post">
+           <form action="RadioUAdmin/validar.php" method="post">
              <label>Email</label>
              <input type="email" name="mail" placeholder="example@example.com" />
 
@@ -37,11 +37,11 @@
 </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-    <script src="js/index.js"></script>
+    <script src="RadioUAdmin/js/index.js"></script>
 
 <?php
 		if(isset($_POST['submit'])){
-			require("registro.php");
+			require("RadioUAdmin/registro.php");
 		}
 	?>
 <!--Fin formulario registro -->
@@ -53,9 +53,9 @@
 <div class="">
 <center><table>
 <tr>
-<td><img src="pictures/usac.png" width="135" height="135"></td>
+<td><img src="RadioUAdmin/pictures/usac.png" width="135" height="135"></td>
 <td><h1>Fonoteca Radio Universidad  </h1></td>
-<td><img src="pictures/usac1.png" width="135" height="135"></td>
+<td><img src="RadioUAdmin/pictures/usac1.png" width="135" height="135"></td>
 </tr>
 </table></center>
 </div>
@@ -77,22 +77,22 @@
 	<header>
 		
 		<div class="contenedor" id="uno">
-		<a href="pag1.php"><img class="icon" src="pictures/programa.png" alt="Enviar"></a>
+		<a href="RadioUAdmin/pag1.php"><img class="icon" src="RadioUAdmin/pictures/programa.png" alt="Enviar"></a>
 			<p class="texto">Programas</p>
 		</div>
 
 		<div class="contenedor" id="dos">
-		<a href="pag2.php"><img class="icon" src="pictures/entre.png" alt="Enviar"></a>	
+		<a href="RadioUAdmin/pag2.php"><img class="icon" src="RadioUAdmin/pictures/entre.png" alt="Enviar"></a>	
 			<p class="texto">Entrevistas</p>
 		</div>
 
 		<div class="contenedor" id="tres">
-			<a href="pag3.php"><img class="icon" src="pictures/musica.png" alt="Enviar"></a>
+			<a href="RadioUAdmin/pag3.php"><img class="icon" src="RadioUAdmin/pictures/musica.png" alt="Enviar"></a>
 			<p class="texto">Musica</p>
 		</div>
 
 		<div class="contenedor" id="cuatro">
-		<a href="pag4.php"><img class="icon" src="pictures/grupo.png" alt="Enviar"></a>
+		<a href="RadioUAdmin/pag4.php"><img class="icon" src="RadioUAdmin/pictures/grupo.png" alt="Enviar"></a>
 			<p class="texto">Documentales</p>
 		</div>
 
