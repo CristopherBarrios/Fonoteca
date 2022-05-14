@@ -1,4 +1,4 @@
 # Fonoteca
 Proyecto de fonoteca 
 
-![plot](picsReadme/principal.png "referencia")
+![alt text](https://github.com/CristopherBarrios/Fonoteca/blob/master/PicsReadme/principal.png "referencia")
