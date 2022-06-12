@@ -95,8 +95,8 @@ include('class.php');
 
 	<?php
 include('class.php');
-	$res2 =  mysql_query("SELECT * FROM progra1 ORDER BY nombre ASC");
-	while($row2 = mysql_fetch_array($res2))
+	$res2 =  mysqli_query($con,"SELECT * FROM progra1 ORDER BY nombre ASC");
+	while($row2 = mysqli_fetch_array($res2))
 ?>
 
 
@@ -108,11 +108,11 @@ include('class.php');
 
 $sql = "SELECT * FROM entrevistas ORDER BY name ASC";
 
-$res =  mysql_query($sql);
+$res =  mysqli_query($con,$sql);
 
 $sqli = "SELECT * FROM progra1";
 
-$rest =  mysql_query($sqli);
+$rest =  mysqli_query($con,$sqli);
 
 ?>
 <div class="datagrid">
@@ -132,7 +132,7 @@ $rest =  mysql_query($sqli);
 				</thead>
 
 				<?php
-					while($row = mysql_fetch_array($res)){
+					while($row = mysqli_fetch_array($res)){
 $fecha1=$row['fecha'];
 $fecha2=date("d-m-Y",strtotime($fecha1));
 					echo "<tr>

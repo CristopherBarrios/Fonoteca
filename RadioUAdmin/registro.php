@@ -6,18 +6,18 @@
 	$rpass=$_POST['rpass'];
 
 	require("connect_db.php");
-	$checkemail=mysql_query("SELECT * FROM login WHERE email='$mail'");
-	$check_mail=mysql_num_rows($checkemail);
+	$checkemail=mysqli_query($con,"SELECT * FROM login WHERE email='$mail'");
+	$check_mail=mysqli_num_rows($checkemail);
 		if($pass==$rpass){
 			if($check_mail>0){
 				echo ' <script language="javascript">alert("Atencion, ya existe el mail designado para un usuario, verifique sus datos");</script> ';
 			}else{
 				
 				//require("connect_db.php");
-				mysql_query("INSERT INTO login VALUES('','$realname','$pass','$mail','')");
+				mysqli_query($con,"INSERT INTO login VALUES('','$realname','$pass','$mail','')");
 				//echo 'Se ha registrado con exito';
 				echo ' <script language="javascript">alert("Usuario registrado con éxito");</script> ';
-				mysql_close($link);
+				mysqli_close($link);
 			}
 			
 		}else{

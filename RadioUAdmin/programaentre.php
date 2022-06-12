@@ -6,7 +6,7 @@ if(isset($_POST['crear'])){
 
   $location =  utf8_decode('subidos/Entrevistas/'.$_POST['nuevo'].'/');
 
-mysql_query("SET NAMES 'utf8'");
+mysqli_query($con,"SET NAMES 'utf8'");
 
 
     if(!file_exists($location)){
@@ -15,7 +15,7 @@ mysql_query("SET NAMES 'utf8'");
       }
 
 
-    mysql_query("REPLACE INTO progra1 (nombre) VALUES ('$nuevo')");
+    mysqli_query($con,"REPLACE INTO progra1 (nombre) VALUES ('$nuevo')");
 
     header('Location:index2.php');
 }

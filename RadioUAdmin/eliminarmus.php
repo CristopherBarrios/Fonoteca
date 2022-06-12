@@ -9,8 +9,8 @@ if(isset($_POST['eliminar'])){
 
 $sql = "SELECT * FROM musica";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
 
   $path =$row['path'];
   $audio  =$row['audio'];
@@ -18,7 +18,7 @@ $row = mysql_fetch_array($res);
     unlink($path);
     unlink($audio);
 
-		mysql_query("DELETE FROM musica WHERE id='$id'");		
+		mysqli_query($con,"DELETE FROM musica WHERE id='$id'");		
     header('Location:index3.php');
 
 	

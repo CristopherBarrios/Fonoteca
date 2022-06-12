@@ -41,8 +41,8 @@ $id = $_REQUEST['id'];
 
 $sql = "SELECT * FROM programas WHERE id='$id'";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con, $sql);
+$row = mysqli_fetch_array($res);
 
 ?>
 <form action="process_modi.php?id=<?php echo $row['id']; ?>" method="POST" enctype="multipart/form-data">
@@ -70,8 +70,8 @@ $row = mysql_fetch_array($res);
 
 	<?php
 include('class.php');
-	$res2 =  mysql_query("SELECT * FROM progra ORDER BY nombre ASC");
-	while($row2 = mysql_fetch_array($res2))
+	$res2 =  mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
+	while($row2 = mysqli_fetch_array($res2))
 {?>
 
 <option value="<?php echo $row2['nombre']?>"> <?php echo $row2['nombre'];?></option>";

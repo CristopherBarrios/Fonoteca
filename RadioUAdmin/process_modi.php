@@ -15,7 +15,7 @@ if(isset($_POST['modificar'])){
 	$name1 = "[".$_POST['opcion']."]:   "  .$_POST['doc_name'];
 
 
-mysql_query("SELECT * FROM progra ORDER BY nombre ASC");
+mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
 $opcion = $_POST['opcion'];
 
 		$location = 'subidos/Programas/'.$_POST['opcion'].'/';
@@ -28,13 +28,13 @@ $opcion = $_POST['opcion'];
 
 	$sql = "SELECT * FROM programas";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
 
   $path =$row['path'];
   $audio  =$row['audio'];
 
-	mysql_query("UPDATE programas SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
+	mysqli_query($con,"UPDATE programas SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
 
 		header('Location:index1.php');
 	}
@@ -53,7 +53,7 @@ if(isset($_POST['modificarentre'])){
 	$name1 = "[".$_POST['opcion']."]:   "  .$_POST['doc_name'];
 
 
-mysql_query("SELECT * FROM progra1 ORDER BY nombre ASC");
+mysqli_query($con,"SELECT * FROM progra1 ORDER BY nombre ASC");
 $opcion = $_POST['opcion'];
 
 		$location = 'subidos/Entrevistas/'.$_POST['opcion'].'/';
@@ -66,13 +66,13 @@ $opcion = $_POST['opcion'];
 
 	$sql = "SELECT * FROM entrevistas";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
 
   $path =$row['path'];
   $audio  =$row['audio'];
 
-	mysql_query("UPDATE entrevistas SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
+	mysqli_query($con,"UPDATE entrevistas SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
 
 		header('Location:index2.php');
 	}
@@ -91,7 +91,7 @@ if(isset($_POST['modificarmus'])){
 	$name1 = "[".$_POST['opcion']."]:   "  .$_POST['doc_name'];
 
 
-mysql_query("SELECT * FROM progra2 ORDER BY nombre ASC");
+mysqli_query($con,"SELECT * FROM progra2 ORDER BY nombre ASC");
 $opcion = $_POST['opcion'];
 
 		$location = 'subidos/Musica/'.$_POST['opcion'].'/';
@@ -104,13 +104,13 @@ $opcion = $_POST['opcion'];
 
 	$sql = "SELECT * FROM musica";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
 
   $path =$row['path'];
   $audio  =$row['audio'];
 
-	mysql_query("UPDATE musica SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
+	mysqli_query($con,"UPDATE musica SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
 
 		header('Location:index3.php');
 	}
@@ -129,7 +129,7 @@ if(isset($_POST['modificardoc'])){
 	$name1 = "[".$_POST['opcion']."]:   "  .$_POST['doc_name'];
 
 
-mysql_query("SELECT * FROM progra3 ORDER BY nombre ASC");
+mysqli_query($con,"SELECT * FROM progra3 ORDER BY nombre ASC");
 $opcion = $_POST['opcion'];
 
 		$location = 'subidos/Documentales/'.$_POST['opcion'].'/';
@@ -142,13 +142,13 @@ $opcion = $_POST['opcion'];
 
 	$sql = "SELECT * FROM documentales";
 
-$res =  mysql_query($sql);
-$row = mysql_fetch_array($res);
+$res =  mysqli_query($con,$sql);
+$row = mysqli_fetch_array($res);
 
   $path =$row['path'];
   $audio  =$row['audio'];
 
-	mysql_query("UPDATE documentales SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
+	mysqli_query($con,"UPDATE documentales SET name='$name1', fecha='$fechal' , path='$imagen' , audio='$audio1' WHERE id='$id'");
 
 		header('Location:index4.php');
 	}
