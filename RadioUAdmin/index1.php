@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+
+
+
 <?php
 include('class.php');
 ?>
 
+
+
 <style type="text/css">
-
-
 #cuadro{
 	width: 95%;
 	background: #F8F8F8 ;
@@ -16,7 +19,8 @@ include('class.php');
 .tamano{
 	width: 90%
 }
-	</style>
+</style>
+
 
 
 <script type="text/javascript">
@@ -59,165 +63,179 @@ include('class.php');
   });
 
 })(document);
-</script>		
+</script>
+
+
 
 <html>
-<head>
-	<title>Subir Archivo</title>
-	<meta charset="utf-8">
+
+
+	<head>
+		<title>Subir Archivo</title>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/estilos.css">
 		<link rel="stylesheet" type="text/css" href="menu1.css">
+	</head>
+	<body>
 
-</head>
-<body>
-<header>
+
+		<header>
 			<div class="alert alert-info">
-			<h3>BIENVENIDO ADMINISTRADOR</h3>
+				<h3>BIENVENIDO ADMINISTRADOR</h3>
 			</div>
 		</header>
+
+
 		<div id="cuadro">
-		<ul>
-  <li><a href="index1.php">PROGRAMAS</a></li>
-  <li><a href="index2.php">ENTREVISTAS</a></li>
-  <li><a href="index3.php">MUSICA</a></li>
-  <li><a href="index4.php">DOCUMENTALES</a></li>
-</ul>
-<form action="insertar.php" method="POST" enctype="multipart/form-data">
+			<ul>
+				<li><a href="index1.php">PROGRAMAS</a></li>
+				<li><a href="index2.php">ENTREVISTAS</a></li>
+				<li><a href="index3.php">MUSICA</a></li>
+				<li><a href="index4.php">DOCUMENTALES</a></li>
+			</ul>
+
+
+
+			<form action="insertar.php" method="POST" enctype="multipart/form-data">
 				<table class="table">
-				<tr><th colspan="5" class="bg-primary text-center" >AGREGA NUEVAS PISTAS DE AUDIO [PROGRAMAS]</th></tr>
-				<tr class="bg-primary">
-				<th>PORTADA</th>
-				<th>NOMBRE</th>
-				<th>AUDIO</th>
-				<th>FECHA</th>
-				<th></th>
-				</tr>
-				<tr class="bg-info">
-				<td><input  name="myfile" type="file" class="form-control"  accept="image/*"></td>
-				<td><input  name="doc_name" type="text" class="form-control" placeholder="Nombre">
+					<tr>
+						<th colspan="5" class="bg-primary text-center" >AGREGA NUEVAS PISTAS DE AUDIO [PROGRAMAS]</th>
+					</tr>
 
-				</td>
-				<td><input  name="audio" type="file" class="form-control" accept="audio/*"></td>
-				<?php
-  				date_default_timezone_set("America/Guatemala");
-  				$today = date("Y-m-d");
-				?>
-				<td><input  name="fechal" type="date" class="form-control" value="<?php echo $today; ?>" placeholder="Fecha"></td>
-				<td><input  name="submit" type="submit" class="btn btn-success" value="AGREGAR" > </td>
-				</tr>
+					<tr class="bg-primary">
+						<th>PORTADA</th>
+						<th>NOMBRE</th>
+						<th>AUDIO</th>
+						<th>FECHA</th>
+						<th></th>
+					</tr>
+
+					<tr class="bg-info">
+						<td><input  name="myfile" type="file" class="form-control"  accept="image/*"></td>
+						<td><input  name="doc_name" type="text" class="form-control" placeholder="Nombre"></td>
+						<td><input  name="audio" type="file" class="form-control" accept="audio/*"></td>
+					
+					
+					
+						<?php
+						date_default_timezone_set("America/Guatemala");
+						$today = date("Y-m-d");
+						?>
 
 
 
+						<td><input  name="fechal" type="date" class="form-control" value="<?php echo $today; ?>" placeholder="Fecha"></td>
+						<td><input  name="submit" type="submit" class="btn btn-success" value="AGREGAR" > </td>
+					</tr>
 
-				<tr class="bg-info">
-						<td><div style="text-align:right;">
+					<tr class="bg-info">
+						<td>
+							<div style="text-align:right;">
 							<input  name="elim" type="submit" class="btn btn-default" value="ELIMINAR" onclick='return confirm("¿Seguro que deseas eliminar este registro? Se borraran TODOS los registros de este programa (portadas, música, etc)")'  >
-						</div>
-					
-					</td>
+							</div>
+						</td>
+						<td>
+							<center>
+								<select required name="opcion" class="btn">
+									<option hidden value="PROGRAMA">→→→PROGRAMA←←←</option>
+								
+								
+								
+									<?php
+									include('class.php');
+									$res2 =  mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
+									while($row2 = mysqli_fetch_array($res2))
+									{
+										?>
+										<option value="<?php echo $row2['nombre']?>"> <?php echo $row2['nombre'];?></option>";
+										<?php 
+									} ?>
 
 
 
-					<td>
-<center><select required name="opcion" class="btn">
-<option hidden value="PROGRAMA">→→→PROGRAMA←←←</option>
-
-	<?php
-include('class.php');
-	$res2 =  mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
-	while($row2 = mysqli_fetch_array($res2))
-{?>
-
-<option value="<?php echo $row2['nombre']?>"> <?php echo $row2['nombre'];?></option>";
-<?php } ?>
-</select></center>
-
-
-</form>
-
-
-
-</td>
-				
-				
-				<form  action="programa.php" method="POST"><td>
-				<input required class="btn " type="text" name="nuevo" placeholder="Nuevo Programa..">
-				<input required name="crear" type="submit" class="btn btn-default" value="CREAR" ></td></form> 
-				<td></td>
-				<td></td>
-				</tr>
+								</select>
+							</center>
+						</td>
+						<td>
+							<form  action="programa.php" method="POST">
+								<input class="btn " type="text" name="nuevo" placeholder="Nuevo Programa..">
+								<input required name="crear" type="submit" class="btn btn-default" value="CREAR" >
+							</form>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
 				</table>
-				
-			
+			</form> 
 			<center>
-			<table class="table">
-			<tr class="bg-primary">
-				<th th colspan="5" class="bg-primary text-center">BUSCA TU PISTA DE AUDIO</th>
-				<tr class="bg-info"><td><center><div class="derecha"  id="buscar"> <i><input  type="search" class="light-table-filter tamano form-control" data-table="order-table"  placeholder="BUSCA TU PISTA..."></i></div></center></td></tr>
-			</tr>
-				
-			</table>
-					
-	
-	</center><br>
+				<table class="table">
+					<tr class="bg-primary">
+						<th th colspan="5" class="bg-primary text-center">BUSCA TU PISTA DE AUDIO</th>
+						<tr class="bg-info">
+							<td>
+								<center>
+									<div class="derecha"  id="buscar">
+										<i><input  type="search" class="light-table-filter tamano form-control" data-table="order-table"  placeholder="BUSCA TU PISTA..."></i>
+									</div>
+								</center>
+							</td>
+						</tr>
+					</tr>
+				</table>
+			</center>
+			<br>
 
 
 
-<?php
-include('class.php');
-
-$sql = "SELECT * FROM programas ORDER BY name ASC";
-
-$res =  mysqli_query($con,$sql);
-
-$sqli = "SELECT * FROM progra";
-
-$rest =  mysqli_query($con,$sqli);
-
-?>
-<div class="datagrid">
+			<?php
+			include('class.php');
+			$sql = "SELECT * FROM programas ORDER BY name ASC";
+			$res =  mysqli_query($con,$sql);
+			$sqli = "SELECT * FROM progra";
+			$rest =  mysqli_query($con,$sqli);
+			?>
 		
-			<table class="order-table table">
-			<thead>
-				<tr class="bg-primary titulo">
+			<div class="datagrid">
+				<table class="order-table table">
+					<thead>
+						<tr class="bg-primary titulo">
+							<th>ID</th>
+							<th>IMAGEN</th>
+							<th>[PROGRAMA] NOMBRE</th>
+							<th>AUDIO</th>
+							<th>FECHA</th>
+							<th></th>
+						</tr>
+					</thead>
 				
-				<th>ID</th>
-				<th>IMAGEN</th>
-				<th>[PROGRAMA] NOMBRE</th>
-				<th>AUDIO</th>
-				<th>FECHA</th>
-				<th></th>
 				
-				</tr>
-				</thead>
 
-				<?php
-					while($row = mysqli_fetch_array($res)){
-$fecha1=$row['fecha'];
-$fecha2=date("d-m-Y",strtotime($fecha1));
-					echo "<tr>
-							<td>".$row['id']."</td>
-							<td><img src='".$row['path']."' width='100' height='100'/></td>
-							<td>".$row['name']."</td>
-							<td><audio controls><source src='".$row['audio']."'/></audio controls></td>
-							<td>".$fecha2. "</td>
-							<td><form action='eliminar.php?id=".$row['id']."' method='POST' enctype='multipart/form-data'>
-
-							<input name='eliminar' type='submit' class='btn btn-danger' value='ELIMINAR' onclick='return confirm(\"¿Seguro que deseas eliminar este registro?\")' ></form><br>
-
-
-
-							<form action='modificar.php?id=".$row['id']."'method='POST' enctype='multipart/form-data'>
-
-							<input name='submit' type='submit' class='btn btn-primary' value='MODIFICAR'  ></form> </td>
-						 </tr>";
-					}
-				?>
-			</table>
+					<?php
+					while($row = mysqli_fetch_array($res)) {
+						$fecha1 = $row['fecha'];
+						$fecha2 = date("d-m-Y",strtotime($fecha1));
+						echo "<tr>
+								 <td>".$row['id']."</td>
+								 <td><img src='".$row['path']."' width='100' height='100'/></td>
+								 <td>".$row['name']."</td>
+								 <td><audio controls><source src='".$row['audio']."'/></audio controls></td>
+								 <td>".$fecha2. "</td>
+							 	 <td>
+									 <form action='eliminar.php?id=".$row['id']."' method='POST' enctype='multipart/form-data'>
+										 <input name='eliminar' type='submit' class='btn btn-danger' value='ELIMINAR' onclick='return confirm(\"¿Seguro que deseas eliminar este registro?\")' >
+									 </form>
+									 <br>
+									 <form action='modificar.php?id=".$row['id']."'method='POST' enctype='multipart/form-data'>
+										 <input name='submit' type='submit' class='btn btn-primary' value='MODIFICAR'  >
+									 </form> 
+								 </td>
+						 		</tr>";
+						}
+					?>
+				</table>
 			</div>
-
-
-</body>
+		</div>
+	</body>
 </html>
