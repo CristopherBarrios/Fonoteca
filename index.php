@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="RadioUAdmin/css/style1.css"> 
-    <link rel="stylesheet" href="RadioUAdmin/efectos.css">
-    <link rel="stylesheet" href="RadioUAdmin/letras1.css">
+    <link rel="stylesheet" href="RadioUAdmin/css/efectos.css">
+    <link rel="stylesheet" href="RadioUAdmin/css/letras1.css">
   </head>
   <body>
     <div id="wrap">
       <div id="regbar">
         <div id="navthing">
-          <h2><a href="#" id="loginform">Administrador</a> | <a href="RadioUAdmin/pedir.php">Contactanos</a></h2>
+          <h2><a href="#" id="loginform">Administrador</a> | <a href="RadioUAdmin/Usuario/pedir/pedir.php">Contactanos</a></h2>
           <div class="login">
             <div class="arrow-up"></div>
             <div class="formholder">
               <div class="randompad">
-                <form action="RadioUAdmin/validar.php" method="post">
+                <form action="RadioUAdmin/RegistroValidarAdmin/validar.php" method="post">
                   <label>Email</label>
                   <input type="email" name="mail" placeholder="example@example.com" />
                   <label >Password</label>
@@ -34,7 +34,7 @@
       <script src="RadioUAdmin/js/index.js"></script>
 <?php
 		if(isset($_POST['submit'])){
-			require("RadioUAdmin/registro.php");
+			require("RadioUAdmin/RegistroValidarAdmin/registro.php");
 		}
 	?>
 <!--Fin formulario registro -->
@@ -65,22 +65,22 @@
 
   <header>
     <div class="contenedor" id="uno">
-      <a href="RadioUAdmin/pag1.php"><img class="icon" src="RadioUAdmin/pictures/programa.png" alt="Enviar"></a>
+      <a href="RadioUAdmin/Usuario/index/pag1.php"><img class="icon" src="RadioUAdmin/pictures/programa.png" alt="Enviar"></a>
       <p class="texto">Programas</p>
 		</div>
 
 		<div class="contenedor" id="dos">
-		<a href="RadioUAdmin/pag2.php"><img class="icon" src="RadioUAdmin/pictures/entre.png" alt="Enviar"></a>	
+		<a href="RadioUAdmin/Usuario/index/pag2.php"><img class="icon" src="RadioUAdmin/pictures/entre.png" alt="Enviar"></a>	
 			<p class="texto">Entrevistas</p>
 		</div>
 
 		<div class="contenedor" id="tres">
-			<a href="RadioUAdmin/pag3.php"><img class="icon" src="RadioUAdmin/pictures/musica.png" alt="Enviar"></a>
+			<a href="RadioUAdmin/Usuario/index/pag3.php"><img class="icon" src="RadioUAdmin/pictures/musica.png" alt="Enviar"></a>
 			<p class="texto">Musica</p>
 		</div>
 
 		<div class="contenedor" id="cuatro">
-		<a href="RadioUAdmin/pag4.php"><img class="icon" src="RadioUAdmin/pictures/grupo.png" alt="Enviar"></a>
+		<a href="RadioUAdmin/Usuario/index/pag4.php"><img class="icon" src="RadioUAdmin/pictures/grupo.png" alt="Enviar"></a>
 			<p class="texto">Documentales</p>
 		</div>
 	</header>
