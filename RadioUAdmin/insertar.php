@@ -10,18 +10,26 @@ function OpUbica() {
 
 	if (isset($_POST['submit']) or isset($_POST['elim'])) {
 		$ubica =  'subidos/Programas/';
+		$tabla =  "progra";
+		$tabla2 = "programas";
 	} elseif (isset($_POST['submitentre']) or isset($_POST['elimentre'])) {
 		$ubica = 'subidos/Entrevistas/';
+		$tabla =  "progra1";
+		$tabla2 = "entrevistas";
 	} elseif (isset($_POST['submitmus']) or isset($_POST['elimmus'])) {
 		$ubica ='subidos/Musica/';
+		$tabla =  "progra2";
+		$tabla2 = "musica";
 	} elseif (isset($_POST['submitdoc']) or isset($_POST['elimdoc'])) {
 		$ubica ='subidos/Documentales/';
+		$tabla =  "progra3";
+		$tabla2 = "documentales";
 	}
-	return [$opcion, $ubica];
+	return [$opcion, $ubica,$tabla, $tabla2];
 }
 
 function insertion() {
-	list($opcion, $ubica) = OpUbica();
+	list($opcion, $ubica, $tabla, $tabla2) = OpUbica();
 	$lugar = $ubica.$opcion.'/';
 
 	$name1 = "[".$_POST['opcion']."]:   "  .$_POST['doc_name'];
@@ -35,7 +43,7 @@ function insertion() {
 	move_uploaded_file($tmp_name, utf8_decode($imagen));
 	move_uploaded_file($tmp_audio, utf8_decode($audio1));
 
-	return [$name1, $fechal, $imagen, $audio1];
+	return [$name1, $fechal, $imagen, $audio1, $tabla, $tabla2];
 }
 
 function elimUbica($opcion, $ubica) {
@@ -53,91 +61,77 @@ function elimUbica($opcion, $ubica) {
 
 }
 
+function sqlSelectOrder($con, $tabla) {
+	mysqli_query($con,"SELECT * FROM ".$tabla." ORDER BY nombre ASC");
+}
 
+function sqlInsetInto($con, $tabla, $name1, $fechal, $imagen, $audio1) {
+	mysqli_query($con,"INSERT INTO ".$tabla." (name,fecha,path,audio) VALUES ('$name1','$fechal','$imagen','$audio1')");
+}
 
+function sqlDeleteFrom($con, $tabla, $tabla2, $opcion) {
+	mysqli_query($con,"DELETE FROM  ".$tabla."  WHERE nombre='$opcion'");	
+	mysqli_query($con,"DELETE FROM  ".$tabla2." WHERE name LIKE '%$opcion%';");
+}
+
+function mainSubmit($con) {
+	list($name1, $fechal, $imagen, $audio1, $tabla, $tabla2) = insertion();
+	sqlSelectOrder($con,$tabla);
+	sqlInsetInto($con,$tabla2, $name1, $fechal, $imagen, $audio1);
+}
+
+function mainElim($con) {
+	list($opcion, $ubica, $tabla, $tabla2) = OpUbica();
+	sqlSelectOrder($con,$tabla);
+	sqlDeleteFrom($con, $tabla, $tabla2, $opcion);
+	elimUbica($opcion, $ubica);
+}
 
 
 // Programas
 ///////////////////////////////////////////////////////////////////////
 if(isset($_POST['submit'])){
-	mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
-	list($name1, $fechal, $imagen, $audio1) = insertion();
-	$query = mysqli_query($con,"INSERT INTO programas (name,fecha,path,audio) VALUES ('$name1','$fechal','$imagen','$audio1')");
+	mainSubmit($con);
 	header('Location:index1.php');
  }
 if(isset($_POST['elim'])){
-	mysqli_query($con,"SELECT * FROM progra ORDER BY nombre ASC");
-	list($opcion, $ubica) = OpUbica();
-    //base de datos
-	mysqli_query($con,"DELETE FROM  progra  WHERE nombre='$opcion'");	
-	mysqli_query($con,"DELETE FROM  programas WHERE name LIKE '%$opcion%';");	
-	//carpeta
-	elimUbica($opcion, $ubica);
+	mainElim($con);
 	header('Location:index1.php');
 }
-
-
 
 //Entrevistas
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_POST['submitentre'])){
-	mysqli_query($con,"SELECT * FROM progra1 ORDER BY nombre ASC");
-	list($name1, $fechal, $imagen, $audio1) = insertion();
-	$query = mysqli_query($con,"INSERT INTO entrevistas (name,fecha,path,audio) VALUES ('$name1','$fechal','$imagen','$audio1')");
+	mainSubmit($con);
 	header('Location:index2.php');
  }
 
 if(isset($_POST['elimentre'])){
-	mysqli_query($con,"SELECT * FROM progra1 ORDER BY nombre ASC");
-	list($opcion, $ubica) = OpUbica();
-
-	mysqli_query($con,"DELETE FROM  progra1  WHERE nombre='$opcion'");	
-	mysqli_query($con,"DELETE FROM  entrevistas WHERE name LIKE '%$opcion%';");	
-	elimUbica($opcion, $ubica);
+	mainElim($con);
 	header('Location:index2.php');
 }
-
-
 
 //Musica
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_POST['submitmus'])){
-	mysqli_query($con,"SELECT * FROM progra2 ORDER BY nombre ASC");
-	list($name1, $fechal, $imagen, $audio1) = insertion();
-	$query = mysqli_query($con,"INSERT INTO musica (name,fecha,path,audio) VALUES ('$name1','$fechal','$imagen','$audio1')");
+	mainSubmit($con);
 	header('Location:index3.php');
  }
 
 if(isset($_POST['elimmus'])){
-	mysqli_query($con,"SELECT * FROM progra2 ORDER BY nombre ASC");
-	list($opcion, $ubica) = OpUbica();
-
-	mysqli_query($con,"DELETE FROM  progra1  WHERE nombre='$opcion'");	
-	mysqli_query($con,"DELETE FROM  musica WHERE name LIKE '%$opcion%';");
-	elimUbica($opcion, $ubica);	
-	
+	mainElim($con);
 	header('Location:index3.php');
 }
-
-
 
 //Documentales
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_POST['submitdoc'])){
-	mysqli_query($con,"SELECT * FROM progra3 ORDER BY nombre ASC");
-	list($name1, $fechal, $imagen, $audio1) = insertion();
-	$query = mysqli_query($con,"INSERT INTO documentales (name,fecha,path,audio) VALUES ('$name1','$fechal','$imagen','$audio1')");
+	mainSubmit($con);
 	header('Location:index4.php');	
  }
 
 if(isset($_POST['elimdoc'])){
-	mysqli_query($con,"SELECT * FROM progra3 ORDER BY nombre ASC");
-	list($opcion, $ubica) = OpUbica();
-
-	mysqli_query($con,"DELETE FROM  progra3  WHERE nombre='$opcion'");	
-	mysqli_query($con,"DELETE FROM  documentales WHERE name LIKE '%$opcion%';");	
-	elimUbica($opcion, $ubica);	
-		
+	mainElim($con);
 	header('Location:index4.php');
 }
 ?>

@@ -158,6 +158,7 @@ include('class.php');
 								</select>
 							</center>
 						</td>
+			</form> 
 						<td>
 							<form  action="programa.php" method="POST">
 								<input class="btn " type="text" name="nuevo" placeholder="Nuevo Programa..">
@@ -168,7 +169,6 @@ include('class.php');
 						<td></td>
 					</tr>
 				</table>
-			</form> 
 			<center>
 				<table class="table">
 					<tr class="bg-primary">
